@@ -35,3 +35,12 @@ $(BUILD_PATH)/kwm: $(KWM_SRCS)
 
 $(BUILD_PATH)/kwmc: $(KWMC_SRCS)
 	g++ $^ $(DEBUG_BUILD) $(BUILD_FLAGS) -o $@
+
+$(BUILD_PATH)/kwm.app: $(BINS)
+	mkdir -p $@
+	mkdir -p $@/Contents
+	mkdir -p $@/Contents/MacOS
+	cp Info.plist $@/Contents
+	cp $(BINS) $@/Contents/MacOS
+
+app: $(BUILD_PATH)/kwm.app
